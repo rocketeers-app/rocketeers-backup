@@ -1,0 +1,1 @@
+echo "SHOW DATABASES;" | mysql --user=MYSQL_USER --password=MYSQL_PASSWORD | grep -v -E "^(Database|mysql|sys|information_schema|performance_schema)$" | while read DATABASE; do mysqldump --user=MYSQL_USER --password=MYSQL_PASSWORD $DATABASE | gzip -9 | s3cmd put - s3://S3_BUCKET/private/backups/mysql/$DATABASE/`date +"%d"`.sql.gz; done
