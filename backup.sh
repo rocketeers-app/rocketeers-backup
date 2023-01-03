@@ -1,3 +1,5 @@
+#!/bin/bash
+
 DAY=`date +"%d"`
 
 # sites
